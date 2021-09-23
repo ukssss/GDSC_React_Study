@@ -48,5 +48,6 @@
 ## 🚩 Git 사용법
 
 (Git을 잘 알더라도 꼭 읽어보세요!!) 
--> 링크 (https://velog.io/@turtle601/GDSC-React-Study-%EA%B9%83-%EC%82%AC%EC%9A%A9%EB%B2%95)
+
+#### 링크 : (https://velog.io/@turtle601/GDSC-React-Study-%EA%B9%83-%EC%82%AC%EC%9A%A9%EB%B2%95)
 
