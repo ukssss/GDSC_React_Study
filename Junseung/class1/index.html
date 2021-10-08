@@ -12,33 +12,38 @@
     <div id = "root"></div>
 
     <script type = "text/babel">
-        class LikeButton extends React.Component {
+        class MulTable extends React.Component {
             constructor(props){
                 super(props);
                 this.state = {
-                    liked: false,
+                    first : Math.floor(1 + Math.random() * 9),
+                    second : Math.floor(1 + Math.random() * 9),
+                    inputAnswer : "",
+                    result : ""
                 };
             }
 
             render(){
                 return ( 
-                    <button type = "submit" onClick = {() => {
-                        (this.state.liked === true)
-                        ? this.setState( { liked : false } )
-                        : this.setState( { liked : true } )
-                    }}>
-                    {
-                        (this.state.liked === true)
-                        ? "구독 취소"
-                        : "구독"
-                    }
-                    </button>
+                    <>  
+                        <div> { this.state.first } X { this.state.second } 는? </div>
+                        <form onSubmit = {(e) => {
+                            e.preventDefault();
+                            ( this.state.first * this.state.second ) === parseInt(this.state.inputAnswer)
+                            ? this.setState( { result : "정답" , value : ""}) 
+                            : this.setState( { result : "땡" , value : ""}) 
+                        }}>
+                            <input type = "text" onChange = {(e) => {this.setState({ inputAnswer : e.target.value })}} />
+                            <button>눌러</button>
+                        </form>
+                        <div>{this.state.result}</div>
+                    </>
                 )
             }
         }
     </script>
     <script type = "text/babel">
-        ReactDOM.render(<LikeButton></LikeButton>, document.querySelector('#root'));
+        ReactDOM.render(<MulTable></MulTable>, document.querySelector('#root'));
     </script>    
 </body>
 </html>
