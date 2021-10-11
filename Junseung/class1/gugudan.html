@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>구구단 만들기</title>
+</head>
+<body>
+    <h1>간단한 구구단 만들기</h1>
+    <div id = "root"></div>
+
+    <script type = "text/babel">
+
+        // 객관식 나타내는 컴포넌트
+        function Problem(props){
+            return (
+                <>
+                {
+                    props.array.map((val, idx) => {
+                        return (
+                            <div>
+                                <input type = "checkbox" id = {idx} value = {val} onChange = {props.onChange}/>
+                                <label>{idx+1}번 {val}</label>
+                            </div>
+                        )
+                    })
+                }    
+                </>
+            )
+        }
+
+        class MulTable extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+
+                    // 문제 state
+                    first : Math.floor(1 + Math.random() * 9),
+                    second : Math.floor(1 + Math.random() * 9),
+
+                    // 체크 결과 값 나타내는 state
+                    result : [
+                        {checking : false , data : 0},
+                        {checking : false , data : 0},
+                        {checking : false , data : 0},
+                        {checking : false , data : 0},
+                        {checking : false , data : 0}
+                    ],
+
+                    // 정답 or 오답 출력
+                    answer : "",
+                }
+                
+                this.array = this.random(); // 객관식 문항 5개
+            }
+
+            // 객관식 랜덤 문제 생성하는 함수
+            random = () => {
+                const array = new Array(4).fill(0).map((val) => {
+                    let number1 = Math.floor(1 + Math.random() * 9);
+                    let number2 = Math.floor(1 + Math.random() * 9);
+                    return number1 * number2
+                })
+
+                array.push(this.state.first * this.state.second);
+                array.sort(() => Math.random() - 0.5);
+                return array;
+            } 
+
+            // form 버튼 눌렀을 때 실행되는 이벤트
+            onSubmit = (e) => {
+                let count = 0;  // 정답이 체크된 횟수 (중복 체크 확인 변수)
+                let flag = false; // 체크 된지 확인하는 변수
+                const correctAnswer = this.state.first * this.state.second; // 정답
+
+                e.preventDefault();
+
+                this.state.result.forEach((val) => {
+                    if (val.checking === true) count += 1;
+                    if (val.checking === true && parseInt(val.data) === correctAnswer) flag = true;
+                })
+                
+                if (count === 1 && flag) this.setState( { answer : "정답" })
+                else this.setState({ answer : "오답" })
+            }
+
+            onChange = (e) => {
+                let resultCopy = [...this.state.result]; // this.state.result 데이터 복사하여 사용 (데이터 보존성?을 위해)
+                let id = e.target.id;  // 객관식 5문제 idx값
+                let value = e.target.value // 객관식 5문제 val값
+
+                resultCopy[id].data = value;
+
+                if (e.target.checked) resultCopy[id].checking = true;
+                else resultCopy[id].checking = false;
+                
+                this.setState({result : resultCopy});
+            }
+
+            render(){
+                return ( 
+                    <>  
+                        <div> {this.state.first} X {this.state.second} ? (중복 입력 시 오답 처리) </div>
+                        <form onSubmit = {this.onSubmit}>
+                            <Problem array = {this.array} onChange = {this.onChange} /> 
+                            <div> {this.state.answer} </div>
+                            <button>정답확인</button>
+                        </form>
+                    </>
+                )
+            }
+        }
+    </script>
+    <script type = "text/babel">
+        ReactDOM.render(<MulTable></MulTable>, document.querySelector('#root'));
+    </script>    
+</body>
+</html>
