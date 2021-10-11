@@ -4,10 +4,6 @@
 #node_modules
 /node_modules
 
-#package files
-package.json
-package-lock.json
-
 # ignore all .class files
 #*.class
 
