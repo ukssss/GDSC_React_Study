@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>구구단 만들기</title>
+</head>
+<body>
+    <h1>간단한 구구단 만들기</h1>
+    <div id = "root"></div>
+
+    <script type = "text/babel">
+        class MulTable extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    first : Math.floor(1 + Math.random() * 9),
+                    second : Math.floor(1 + Math.random() * 9),
+                    inputAnswer : "",
+                    result : ""
+                };
+            }
+
+            render(){
+                return ( 
+                    <>  
+                        <div> { this.state.first } X { this.state.second } 는? </div>
+                        <form onSubmit = {(e) => {
+                            e.preventDefault();
+                            ( this.state.first * this.state.second ) === parseInt(this.state.inputAnswer)
+                            ? this.setState( { result : "정답" , value : ""}) 
+                            : this.setState( { result : "땡" , value : ""}) 
+                        }}>
+                            <input type = "text" onChange = {(e) => {this.setState({ inputAnswer : e.target.value })}} />
+                            <button>눌러</button>
+                        </form>
+                        <div>{this.state.result}</div>
+                    </>
+                )
+            }
+        }
+    </script>
+    <script type = "text/babel">
+        ReactDOM.render(<MulTable></MulTable>, document.querySelector('#root'));
+    </script>    
+</body>
+</html>
