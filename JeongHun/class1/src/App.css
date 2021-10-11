@@ -1,0 +1,27 @@
+#App {
+  width:400px;
+  height:150px;
+  margin:0 auto;
+  margin-top:200px;
+  padding:50px;
+  background-color: blanchedalmond;
+}
+
+h2 {
+  display: block;
+  text-align: center;
+ 
+}
+#input1 {
+  display:inline-block;
+  margin-left: 80px;
+ 
+  height:30px;
+}
+
+#input2 {
+  display:inline-block;
+  margin-left: 10px;
+  height:30px;
+}
+
