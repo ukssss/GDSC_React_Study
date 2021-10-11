@@ -1,23 +1,29 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# 프로젝트 잡업시 로컬 환경의 정보나 빌드 정보 등 원격 저장소에 관리하지 말아야되는 파일들에 대해서 
+# 지정하여 원격 저장소에 실수로 올라가지 않도록 관리하는 파일
 
-# dependencies
+#node_modules
 /node_modules
-/.pnp
-.pnp.js
 
-# testing
-/coverage
+# ignore all .class files
+#*.class
 
-# production
-/build
+# exclude lib.class from "*.class", meaning all lib.class are still tracked
+#!lib.class
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# ignore all json files whose name begin with 'temp-'
+#temp-*.json
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# only ignore the build.log file in current directory, not those in its subdirectories
+#/build.log
+
+# specify a folder with slash in the end
+# ignore all files in any directory named temp
+#temp/
+
+# ignore doc/notes.txt, but not doc/server/arch.txt
+#bin/*.txt
+
+# ignore all .pdf files in the doc/ directory and any of its subdirectories
+# /** matches 0 or more directories
+#doc/**/*.pdf
+
