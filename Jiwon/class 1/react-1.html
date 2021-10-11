@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    </head>
+    <body>
+        <div id="root"></div> <!-- 결과: <div id="root><button>Like</button></div>"-->
+        <script>
+            const e = React.createElement;
+
+            class LikeButton extends React.Component{
+                //컴포넌트가 처음에 실행될 때 제일 먼저 실행됨.
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        liked: false,
+                    };
+                }
+                //like버튼 안에 렌더가 좋아요 버튼을 어떻게 표현할 것인지
+                render(){
+                    return e('button', {onClick:() => { console.log('clicked')}, type:'submit' }, 'Like');
+                    //<button onclick="() => { console.log(clicked')}" type="submit">Like</button> 버튼을 만들겠다.
+                }
+            }
+        </script>
+        <script>
+            ReactDOM.render(e(LikeButton), document.querySelector('#root'));//위 스크립트에서 만들어낸 likebutton을 그림.
+        </script>
+        <div id="root2"></div>
+        <script>
+            class LikeButton2 extends React.Component{
+                //컴포넌트가 처음에 실행될 때 제일 먼저 실행됨.
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        liked: false,
+                    };
+                }
+                render(){
+                    return e('button', 
+                    {onClick:() => { this.setState({ liked: true})}, type:'submit' }, 
+                    this.state.liked === true ? 'Liked' : 'Like',);
+                    //<button onclick="() => { console.log('clicked') }" type="submit">Liked</button>
+                }
+            }
+        </script>
+        <script>
+            ReactDOM.render(e(LikeButton2), document.querySelector('#root2'));//위 스크립트에서 만들어낸 likebutton을 그림.
+        </script>
+    </body>
+</html>
