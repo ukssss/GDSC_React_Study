@@ -50,7 +50,6 @@ class App extends Component {
         </form>
         <h2>{this.state.result}</h2>
      </div>
-     
     );
   }
 }
