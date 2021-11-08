@@ -1,0 +1,34 @@
+body {
+  background-color: #f0efea;
+  margin-top: 50px;
+}
+
+#root {
+  font-size: 30px;
+}
+
+.inputNumber {
+  text-align: center;
+}
+
+.txtField {
+  width: 70%;
+  height: 50px;
+}
+
+.submitBtn {
+  height: 50px;
+}
+
+.inputResult {
+  background-color: #acb5a7;
+  text-align: center;
+  width: 70%;
+  margin: 50px auto;
+}
+
+.tries {
+  height: 50px;
+  padding: 20px 0 0 0;
+  font-family: "Cute Font", cursive;
+}
