@@ -1,17 +1,15 @@
-class CA {
-  constructor() {
-    this.name = "JeongHun";
-  }
-  func1() {
-    console.log(this.name)
-  }
+class AAA {
+  state = {
+    name: 'kim'
+  };
 
-  func2 =() => {
-    console.log(this.name)
+
+  func = ()=> {
+    const {name} = this.state;
+    console.log(name);
+
   }
 }
 
-var class1 = new CA();
-
-class1.func1();
-class1.func2()
+var c = new AAA();
+c.func();
