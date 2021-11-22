@@ -12,9 +12,9 @@ const Try = ({ tryInfo }) => {
 export default Try;
 
 
-// import React, {Component} from 'react';
+// import React, {PureComponent} from 'react';
 
-// class Try extends Component {
+// class Try extends PureComponent {
 //   render() {
 //     return (
 //       <li>
